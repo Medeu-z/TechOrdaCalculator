@@ -1,0 +1,70 @@
+* {
+    transition: all 0.4s;
+}
+body, html {
+    height: 100vh;
+    margin: 0;
+    background-image: var(--body-background-color);  
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mode{
+    background-color: white;
+    padding: 10px 13px;
+    border-radius: 30px;
+    position: absolute;
+    right: 6%;
+    bottom: 6%;
+}
+.mode i{
+    font-size: 30px;
+    color: var(--mode-icon-color);
+}
+.calculator{
+    width: 280px;
+    padding: 10px;
+    background-color: var(--calculator-background-color);
+    border-radius: 30px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    color: var( --text-color);
+}
+.text__view{
+    text-align: end;
+    padding-right: 5%;
+    padding-top: 6%;
+    margin-bottom: 10px;
+    width: 95%;
+    font-size: 3em;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+input{
+    width: 65px;
+    height: 65px;
+    border-radius: 50px;
+    border: 0px;
+    font-size: 30px;
+    background-color: var(--input-color);
+}
+.top__btn{
+    font-size: 20px;
+    background-color: var(--input-top-color);
+}
+.top__btn:hover{
+    color: var(--input-top-color);
+    background-color: var(--text-color);
+}
+td:last-child input{
+    font-size: 25px;
+}
+.active{
+    background-color: var(--text-color);
+    color: var(--input-right-color);
+}
+.not__active{
+    background-color: var(--input-right-color);
+    color: var(--text-color);
+}

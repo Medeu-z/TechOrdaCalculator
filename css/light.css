@@ -1,0 +1,9 @@
+:root{
+    --body-background-color: linear-gradient(45deg, rgb(153,50,204) 5%, rgb(255,218,185) 95%);
+    --mode-icon-color: #333;
+    --text-color: rgb(72, 83, 94);
+    --calculator-background-color: white;
+    --input-color: #EFEFEF;
+    --input-top-color: rgba(199, 178, 219, 0.61);
+    --input-right-color: rgba(255, 213, 0, 0.669);
+}
