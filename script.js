@@ -9,7 +9,6 @@ let firstNumber;
 let secondNumber;
 let operator;
 let operatorsBtn;
-
 function declare(){
     css_link = document.querySelector("#body__mode");
     mode =  document.querySelector(".mode");
@@ -21,6 +20,40 @@ function declare(){
     resetVars("0");
 }
 declare();
+function events(){
+    mode.addEventListener('click', () => {
+        if(mode.firstElementChild.classList[0] == "bi-moon-fill"){
+            css_link.setAttribute("href", "./css/dark.css");
+            mode.firstElementChild.setAttribute("class", "bi-brightness-high-fill");
+        }else{
+            css_link.setAttribute("href", "./css/light.css");
+            mode.firstElementChild.setAttribute("class", "bi-moon-fill");
+        }
+    });
+    cancel.addEventListener('click', () => {
+        cancel.value = "AC";
+        resetVars("0");
+        changeBtnColor(null, operatorsBtn);
+    });
+    back.addEventListener('click', () => {
+        viewNumber = textView.innerText; 
+        if(!viewNumber.includes("e")){
+            if(viewNumber.length != 1){
+                    viewNumber = String(viewNumber);
+                    viewNumber  =  viewNumber.slice(0, viewNumber.length - 1);
+            }else{
+                    viewNumber = "0";
+            }
+        }
+        textView.innerText = viewNumber;
+    });
+    percent.addEventListener('click', () => {
+        viewNumber = textView.innerText;
+        viewNumber = viewNumber / 100;
+        textView.innerText = viewNumber;
+    });
+}
+events();
 function addNumber(num){
     if(secondNumber.length == 0) changeBtnColor(null, operatorsBtn);
     if(cancel.value != "C") cancel.value="C";
@@ -47,28 +80,41 @@ function addOperator(e, elem){
             viewNumber = "";
         }
         operator = e;
-   }catch(err){
+    }catch(err){
         textView.innerText =  "ERROR";
         secondNumber = "";
         viewNumber = "";
         changeBtnColor(null, operatorsBtn);
-   }
+    }
 }
 function equal(){
     changeBtnColor(null, operatorsBtn);
     checkDot(textView.innerText);
     try{
-        secondNumber =  textView.innerText;
+        secondNumber = textView.innerText;
         viewNumber = count();
         resetVars(viewNumber);
-    }catch(e){
+    }catch(err){
         textView.innerText =  "ERROR";
         secondNumber = "";
         viewNumber = "";
     }
 }
+function resetVars(viewNum){
+    textView.innerText = viewNum;
+    viewNumber = "0";
+    firstNumber = "";
+    secondNumber = "";
+    operator = "";
+}
 function count(){
-    return (operator == "/" && secondNumber == "0") ?  "ERROR" : eval(firstNumber + operator + secondNumber);
+    return (operator == "/" && secondNumber == "0") ?  "ERROR" : String(eval(firstNumber + operator + secondNumber));
+}
+function checkDot(str){
+    if(str[str.length-1] == "."){
+        if(str.length > 1)str += "0";
+        if(str.length == 1)str = "0";
+    }
 }
 function changeBtnColor(e, elements){
     elements.forEach(element => {
@@ -81,51 +127,3 @@ function changeBtnColor(e, elements){
         }
     });  
 }
-function resetVars(viewNum){
-    textView.innerText = viewNum;
-    viewNumber = "0";
-    firstNumber = "";
-    secondNumber = "";
-    operator = "";
-}
-function checkDot(str){
-    if(str[str.length-1] == "."){
-        if(str.length > 1){
-            str += "0";
-        }else if(num.length == 1){
-            str = "0";
-        }    
-    }
-}
-function events(){
-    mode.addEventListener('click', () => {
-        if(mode.firstElementChild.classList[0] == "bi-moon-fill"){
-            css_link.setAttribute("href", "./css/dark.css");
-            mode.firstElementChild.setAttribute("class", "bi-brightness-high-fill");
-        }else{
-            css_link.setAttribute("href", "./css/light.css");
-            mode.firstElementChild.setAttribute("class", "bi-moon-fill");
-        }
-    });
-    cancel.addEventListener('click', () => {
-        cancel.value = "AC";
-        resetVars("0");
-        changeBtnColor(null, operatorsBtn);
-    });
-    back.addEventListener('click', () => {
-        viewNumber = textView.innerText;
-       if(viewNumber.length != 1){
-            viewNumber = String(viewNumber);
-            viewNumber  =  viewNumber.slice(0, viewNumber.length - 1);
-       }else{
-            viewNumber = "0";
-       }
-        textView.innerText = viewNumber;
-    });
-    percent.addEventListener('click', () => {
-        viewNumber = textView.innerText;
-        viewNumber = viewNumber / 100;
-        textView.innerText = viewNumber;
-    });
-}
-events();
