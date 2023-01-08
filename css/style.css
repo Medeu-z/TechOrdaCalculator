@@ -50,6 +50,9 @@ input{
     background-color: var(--input-color);
     color: var( --text-color);
 }
+#zero__btn{
+    width: 135px;
+}
 .top__btn{
     font-size: 20px;
     background-color: var(--input-top-color);
@@ -68,4 +71,21 @@ td:last-child input{
 .not__active{
     background-color: var(--input-right-color);
     color: var(--text-color);
+}
+@media screen and (max-width: 300px){
+    .calculator{
+        width: 90%;
+        padding: 8px;
+    }
+    input{
+        width: 21vw;
+        height: 21vw;
+        font-size: 25px;
+    }
+    #zero__btn{
+        width: 45vw;
+    }
+    .mode{
+        bottom: 3%;
+    }
 }
